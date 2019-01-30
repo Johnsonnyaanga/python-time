@@ -60,16 +60,52 @@ class SingleLinkedList:
         pass
     def insert_at_position(self,data,k):
         pass
-    def delete_node(self):
-        pass
+    def delete_node(self,x):
+        if self.start is None:
+            print("the list is empty")
+            return
+        if self.start.info==x:
+            self.start=self.start.link
+            return
+        #deletion in between or at the end
+        p=self.start
+        while p.link is not None:
+            if p.link.info==x:
+                break
+            p=p.link
+        if p.link is None:
+            print("element",x"not in the list")
+            else:
+                 p.link=p.link.link
     def delete_first_node(self):
-        pass
+        if self.start is None:
+            return
+        self.start=self.start.link
     def delete_last_node(self):
-        pass
+        if self.start is None:
+            return
+        if self.start.link is None:
+            self.start=None
+            return
+        p=self.start
+        while p.link.link is None:
+            p=p.link
+        p.link=None
     def reverse_list(self):
         pass
     def bubble_sort_exdata(self):
-        pass
+        end=None
+        while end !=self.start.link:
+            p=self.start
+            while p.link !=end:
+                q=p.link
+                if p.info>q.info:
+                    p.info,q.info=q.info,p.info
+                p=p.link
+            end=p
+
+          
+        
     def bubble_sort_exlinks(self):
         pass
     def has_cycle(self):
@@ -80,8 +116,33 @@ class SingleLinkedList:
         pass
     def insert_cycle(self,x):
         pass
-    def merge2(self,list2):
-        pass
+    def merge1(self,list2):
+        merge_list=SingleLinkedList()
+        merge_list.start=self.merge1(self.start,list2.start)
+        return merge_list
+    def_merge1(self,p1,p2):
+        if p1.info<=p2.info:
+            startM=Node(p1.info)
+            p1=p1.link
+        else:
+            startM=Node(p1.info)
+            p2=p2.link;
+        pM=startM
+        while p1 is not None and p2 is not None:
+            if p1.info<=p2.info:
+                pM.link=Node(p1.info)
+                p1=p1.link
+            else:
+                startM=Node(p2.info)
+                p2=p2.link;
+            pM=pM.link;
+        #if the second list has finished and elements are left on the first list
+        while p1 is not None:
+            pM.link=Node(p1.info)
+            p1=p1.link
+            pM=pM.link
+        return startM
+        
     def _merge2(self,p1,p2):
         pass
     def merge_sort(self):
